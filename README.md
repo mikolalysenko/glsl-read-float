@@ -76,7 +76,7 @@ Packs a floating point number into an 8bit RGBA color vector, which can be writt
 var unpackFloat = require("glsl-read-float")
 ```
 
-#### `var f = readFloat(x, y, z, w)`
+#### `var f = unpackFloat(x, y, z, w)`
 Unpacks a packed `vec4` into a single floating point value.
 
 * `x` is the first component of the packed float
