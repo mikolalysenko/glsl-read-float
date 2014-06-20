@@ -23,8 +23,8 @@ void main() {\
   gl_Position = vec4(position, 0, 1);\
 }",
   frag: "\
+#pragma glslify: packFloat = require(glsl-read-float)\n\
 uniform highp float f;\
-#pragma glslify: packFloat = require(glsl-read-float)\
 void main() {\
   gl_FragColor = packFloat(f);\
 }",
