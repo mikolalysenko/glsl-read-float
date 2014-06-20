@@ -3,10 +3,10 @@
 var triangle     = require('a-big-triangle')
 var fit          = require('canvas-fit')
 var getContext   = require('gl-context')
-var createShader = require('glslify')
+var glslify      = require('glslify')
 var unpackFloat  = require("../index.js")
 
-var canvas     = container.appendChild(document.createElement('canvas'))
+var canvas     = document.body.appendChild(document.createElement('canvas'))
 var gl         = getContext(canvas, render)
 
 window.addEventListener('resize', fit(canvas), false)
@@ -22,7 +22,9 @@ uniform highp float f;\
 #pragma glslify: packFloat = require(../index.glsl)\
 void main() {\
   gl_FragColor = packFloat(f);\
-}"})(gl)
+}",
+  inline: true
+})(gl)
 
 function render() {
   var num = Math.random()
@@ -35,7 +37,8 @@ function render() {
   //Read back the float
   var buffer = new Uint8Array(4)
   gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, buffer)
+  var unpacked = unpackFloat(buffer[0], buffer[1], buffer[2], buffer[3])
 
   //Log output to console
-  console.log("expected:", num, "got:", )
+  console.log("expected:", num, "got:", unpacked)
 }
