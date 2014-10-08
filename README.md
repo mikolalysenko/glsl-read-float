@@ -88,10 +88,6 @@ Unpacks a packed `vec4` into a single floating point value.
 
 ## Credits
 
-This routine was originally written by @ultraist.  You can find his blog here: http://ultraist.hatenablog.com/
+Originally based on a routine by @ultraist. You can find his blog here: http://ultraist.hatenablog.com/
 
-The post describing this code was published here:
-
-[WebGL GPGPUでfloatの結果を得る](http://ultraist.hatenablog.com/entry/20110608/1307539319)
-
-The npm entry and glslify packaging are currently maintained by Mikola Lysenko.
+Newer version rewritten by Mikola Lysenko.  MIT License (c) 2014

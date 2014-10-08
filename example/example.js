@@ -26,12 +26,16 @@ void main() {\
   inline: true
 })(gl)
 
-function render() {
-  var num = Math.random()
+var FLOAT = new Float32Array(1)
+var BYTE  = new Uint8Array(FLOAT.buffer)
+
+function render(num) {
+  //Convert to float
+  FLOAT[0] = num
 
   //Draw shader
   shader.bind()
-  shader.uniforms.f = num
+  shader.uniforms.f = FLOAT[0]
   triangle(gl)
 
   //Read back the float
@@ -39,6 +43,21 @@ function render() {
   gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, buffer)
   var unpacked = unpackFloat(buffer[0], buffer[1], buffer[2], buffer[3])
 
+  FLOAT[0] = num
+  console.log('in bits:', BYTE[3], BYTE[2], BYTE[1], BYTE[0])
+  console.log('out bits: ', buffer[0], buffer[1], buffer[2], buffer[3])
+
   //Log output to console
-  console.log("expected:", num, "got:", unpacked)
+  if(FLOAT[0] === unpacked) {
+    console.log('ok')
+  } else {
+    console.log('fail, expected:', FLOAT[0], 'got:', unpacked)
+  }
+}
+
+for(var i=-300; i<300; ++i) {
+  render(i)
+}
+for(var j=0; j<100; ++j) {
+  render(Math.random())
 }
