@@ -1,6 +1,6 @@
 {
   "name": "glsl-read-float",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Read floating point values back from WebGL",
   "main": "index.js",
   "directories": {
