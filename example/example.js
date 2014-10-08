@@ -1,15 +1,11 @@
 "use strict"
 
 var triangle     = require('a-big-triangle')
-var fit          = require('canvas-fit')
-var getContext   = require('gl-context')
 var glslify      = require('glslify')
 var unpackFloat  = require("../index.js")
 
 var canvas     = document.body.appendChild(document.createElement('canvas'))
-var gl         = getContext(canvas, render)
-
-window.addEventListener('resize', fit(canvas), false)
+var gl         = canvas.getContext('webgl')
 
 var shader = glslify({
   vert: "\
@@ -61,3 +57,10 @@ for(var i=-300; i<300; ++i) {
 for(var j=0; j<100; ++j) {
   render(Math.random())
 }
+//Test edge cases
+render(1.70141184e38)
+render(-1.70141184e38)
+render(1.17549435e-38)
+render(-1.17549435e-38)
+render(Infinity)
+render(-Infinity)

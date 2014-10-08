@@ -86,6 +86,8 @@ Unpacks a packed `vec4` into a single floating point value.
 
 **Returns** A number which is the unpacked value of the floating point input.
 
+**Note** This module doesn't handle denormals or floats larger than `Math.pow(2, 127)`
+
 ## Credits
 
 Originally based on a routine by @ultraist. You can find his blog here: http://ultraist.hatenablog.com/
